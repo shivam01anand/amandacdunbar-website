@@ -1,0 +1,50 @@
+---
+// src/components/FocusCard.astro
+// Represents an individual treatment focus card
+
+// Props: title (string), description (string), iconName (string - optional)
+const { title, description, iconName } = Astro.props;
+
+// REMOVED ALL ICON LOGIC for debugging
+---
+
+<div class="focus-card">
+  {/* REMOVED Icon Container div */}
+  <h3>{title}</h3>
+  <p>{description}</p>
+</div>
+
+<style>
+  .focus-card {
+    background-color: white;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center; /* Keep text centered */
+    border: 1px solid #eee;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .focus-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  /* REMOVED .icon-container styles */
+
+  h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--step-1);
+    color: var(--color-teal);
+    margin-top: 0; /* Adjust if needed without icon */
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    font-size: var(--step--1);
+    color: var(--color-navy);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+</style> 

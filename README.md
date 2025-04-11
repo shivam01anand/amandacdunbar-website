@@ -1,54 +1,80 @@
-# Starlight Starter Kit: Basics
+# amandacdunbar.com Website
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+This is the codebase for the personal website of Amanda Dunbar, RMT Student Therapist.
+Built with [Astro](https://astro.build/).
 
-```
-npm create astro@latest -- --template starlight
-```
+## Project Setup
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/starlight/tree/main/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/starlight/tree/main/examples/basics)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/withastro/starlight&create_from_path=examples/basics)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwithastro%2Fstarlight%2Ftree%2Fmain%2Fexamples%2Fbasics&project-name=my-starlight-docs&repository-name=my-starlight-docs)
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd amandacdunbar-website
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    Visit `http://localhost:4321` in your browser.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+4.  **Build for production:**
+    ```bash
+    npm run build
+    ```
+    The static site will be generated in the `dist/` directory, ready for deployment to services like Vercel or Netlify.
 
-## 🚀 Project Structure
+## Brand Guidelines
 
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+### Color Palette
 
-```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   ├── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
-```
+-   Deep Teal: `var(--color-teal)` (#006d6f)
+-   Soft Sand: `var(--color-sand)` (#f7f4f1)
+-   Muted Blush: `var(--color-blush)` (#f6cfd6)
+-   Midnight Navy: `var(--color-navy)` (#0e1724)
+-   Accent Neon Violet: `var(--color-violet-accent)` (#8d4cff)
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+CSS variables are defined in `src/styles/global.css`.
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+### Typography
 
-Static assets, like favicons, can be placed in the `public/` directory.
+-   **Headings:** Playfair Display (600 weight) - `var(--font-heading)`
+-   **Body:** Inter (400/500 weights) - `var(--font-body)`
 
-## 🧞 Commands
+Fonts are self-hosted using `@fontsource` packages.
+Fluid typography steps are defined as CSS variables (e.g., `--step-0`, `--step-1`) in `src/styles/global.css`.
 
-All commands are run from the root of the project, from a terminal:
+## Content Editing
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Most text content can be edited directly within the `.astro` files located in `src/components/` and `src/pages/`. Look for the relevant section component (e.g., `src/components/Hero.astro` for the hero text).
 
-## 👀 Want to learn more?
+-   **Hero Text:** Edit `src/components/Hero.astro`
+-   **About Text & Badges:** Edit `src/components/About.astro`
+-   **Treatment Focus Cards:** Edit `src/components/TreatmentFocus.astro` (titles) and potentially `src/components/FocusCard.astro` (structure).
+-   **Clinic Info/Hours:** Edit `src/components/ClinicBooking.astro`
+-   **Footer Links/Text:** Edit `src/components/Footer.astro`
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+## Images
+
+-   Place images in the `public/` directory.
+-   Reference them in components using a root-relative path (e.g., `/my-image.webp`).
+-   Ensure images are optimized for the web (WebP format preferred, compressed).
+-   Hero image should ideally be `< 350kB`.
+-   Use descriptive `alt` text for all images for accessibility.
+
+## Important Placeholders
+
+Remember to replace the following placeholders before launch:
+
+-   **Booking URL:** In `src/layouts/BaseLayout.astro` (JSON-LD script) and `src/components/Hero.astro` (CTA button).
+-   **Clinic Address/Postal Code:** In `src/layouts/BaseLayout.astro` (JSON-LD script) if different from placeholder.
+-   **Clinic Phone:** In `src/layouts/BaseLayout.astro` (JSON-LD script).
+-   **Clinic Hours:** In `src/layouts/BaseLayout.astro` (JSON-LD script) and potentially `src/components/ClinicBooking.astro`.
+-   **Portrait Image:** In `src/layouts/BaseLayout.astro` (JSON-LD script) and `src/components/Hero.astro`.
+-   **Social Share Image:** In `src/layouts/BaseLayout.astro` (meta tags).
+-   **Instagram URL:** In `src/components/Footer.astro`.
+-   **Mailchimp Embed:** Add to `src/components/Footer.astro`.
+-   **Privacy/Accessibility Pages:** Create actual pages or link appropriately in `src/components/Footer.astro`.
+-   **Google Analytics ID:** Set up environment variable `PUBLIC_GA_TRACKING_ID` in your deployment platform (e.g., Vercel) and uncomment the GA script in `src/layouts/BaseLayout.astro` for production builds.

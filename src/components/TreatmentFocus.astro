@@ -1,0 +1,97 @@
+import FocusCard from './FocusCard.astro';
+
+// Replace with actual 1-sentence benefits
+const treatments = [
+  {
+    title: "Trigger-Point Release",
+    description: "Alleviate knots and referred pain for improved mobility.",
+    iconName: "trigger-point"
+  },
+  {
+    title: "TMJ Relief",
+    description: "Ease jaw tension, clicking, and associated headaches.",
+    iconName: "tmj"
+  },
+  {
+    title: "Concussion Management",
+    description: "Gentle techniques to support recovery and reduce symptoms.",
+    iconName: "concussion"
+  }
+];
+---
+
+<section id="treatment-focus" class="treatment-focus-section">
+  <div class="container">
+    <h2>Treatment Focus</h2>
+    <div class="cards-container">
+      {/* Restore the map function */}
+      {treatments.map(treatment => {
+        return (
+          <FocusCard
+            title={treatment.title}
+            description={treatment.description}
+            iconName={treatment.iconName}
+          />
+        );
+      })}
+    </div>
+    <p class="student-note"><small>Student-rate pricing while licensing in progress.</small></p>
+  </div>
+</section>
+
+<style>
+  .treatment-focus-section {
+    padding: var(--step-4) var(--step-1);
+    background-color: var(--color-sand); /* Match hero background */
+  }
+
+  .container {
+    max-width: 1100px; /* Wider container for cards */
+    margin: 0 auto;
+    padding: 0 var(--step-0);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5em;
+    color: var(--color-teal);
+  }
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column mobile */
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 600px) { /* Two columns tablet */
+    .cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    /* Center the last item if there are 3 */
+    .cards-container > :global(:last-child:nth-child(odd)) {
+      grid-column: span 2;
+      max-width: 50%; /* Limit width of centered item */
+      margin: 0 auto; /* Center it */
+    }
+  }
+
+  @media (min-width: 900px) { /* Three columns desktop */
+    .cards-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+     /* Remove centering override for 3 columns */
+     .cards-container > :global(:last-child:nth-child(odd)) {
+        grid-column: auto;
+        max-width: none;
+        margin: 0;
+     }
+  }
+
+  .student-note {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: var(--step--1);
+    color: var(--color-navy);
+    opacity: 0.8;
+  }
+</style> 

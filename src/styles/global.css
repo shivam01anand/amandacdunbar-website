@@ -1,0 +1,98 @@
+/* src/styles/global.css */
+:root {
+  --color-teal: #006d6f;
+  --color-sand: #f7f4f1;
+  --color-blush: #f6cfd6;
+  --color-navy: #0e1724;
+  --color-violet-accent: #8d4cff;
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Example for fluid typography - adjust ranges as needed */
+  --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.80rem);
+  --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1.00rem);
+  --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+  --step-2: clamp(1.62rem, calc(1.50rem + 0.58vw), 1.95rem);
+  --step-3: clamp(1.94rem, calc(1.77rem + 0.85vw), 2.44rem);
+  --step-4: clamp(2.33rem, calc(2.09rem + 1.21vw), 3.05rem);
+  --step-5: clamp(2.80rem, calc(2.46rem + 1.68vw), 3.82rem);
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--color-sand);
+  color: var(--color-navy);
+  scroll-behavior: smooth;
+  font-size: 100%; /* Use % for better accessibility scaling */
+}
+
+body {
+  margin: 0;
+  font-size: var(--step-0); /* Use fluid type step */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  margin: 1.5em 0 0.5em 0;
+  line-height: 1.2;
+  color: var(--color-teal); /* Example: Headings in Teal */
+}
+
+h1 { font-size: var(--step-4); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-2); }
+h4 { font-size: var(--step-1); }
+
+a {
+  color: var(--color-teal);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-violet-accent);
+  text-decoration: underline;
+}
+
+/* Utility class for visually hidden content */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Add more global styles, resets, or utilities here */
+
+/* Basic focus outline for accessibility */
+*:focus-visible {
+  outline: 2px dashed var(--color-violet-accent);
+  outline-offset: 2px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+} 

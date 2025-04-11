@@ -1,0 +1,140 @@
+---
+// src/components/About.astro
+// Placeholder for About Amanda content
+
+// Updated bio text
+const aboutTextP1 = `
+I'm a recent graduate from the massage therapy program at OVCMT in Vernon and excited to be writing my board exams in March 2025!
+`;
+const aboutTextP2 = `
+Over the last two years, I've dedicated myself to discovering my desired areas of clinical focus and developing my unique treatment style. I aim to provide a deeper, targeted approach while working harmoniously with your nervous system, offering a massage that's both relaxing and therapeutic.
+`;
+const aboutTextP3 = `
+I'm continually building my skill set with a focus on trigger point release, TMJ relief, and concussion management.
+`;
+const aboutTextP4 = `
+In my spare time, you'll find me hitting the slopes, at the gym, or enjoying life's simple pleasures.
+`;
+const aboutTextP5 = `
+I'm currently working as a student therapist at a discounted rate while awaiting my RMT license. You can book with me at Enhanced Healing's Ambrosi Rd location.
+`;
+
+const badges = [
+  { icon: '🎓', text: 'OVCMT Grad 2024' }, // Updated text slightly
+  { icon: '🏅', text: 'Board Exam Mar 2025' },
+  { icon: '🏂', text: 'Skier' },
+  { icon: '🏋️', text: 'Gym' },
+  { icon: '🌲', text: 'Outdoors' },
+];
+
+const instagramUrl = "https://www.instagram.com/amandacdunbar/";
+---
+
+<section id="about" class="about-section">
+  <div class="container">
+    <h2>About Me
+      <a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Amanda Dunbar on Instagram (opens in new tab)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        <span class="visually-hidden">Instagram</span>
+      </a>
+    </h2>
+    <div class="about-content">
+      <p>{aboutTextP1}</p>
+      <p>{aboutTextP2}</p>
+      <p>{aboutTextP3}</p>
+      <p>{aboutTextP4}</p>
+      <p>{aboutTextP5}</p>
+    </div>
+    <div class="badges">
+      {badges.map(badge => (
+        <span class="badge">
+          <span class="badge-icon" aria-hidden="true">{badge.icon}</span>
+          {badge.text}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: var(--step-4) var(--step-1); /* Vertical and horizontal padding */
+    background-color: white; /* Contrast with sand background */
+    margin: 2rem 0; /* Space above and below */
+  }
+
+  .container {
+    max-width: 800px; /* Limit content width for readability */
+    margin: 0 auto; /* Center the container */
+    padding: 0 var(--step-0);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5em;
+    color: var(--color-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+  }
+
+  .about-content p {
+    font-size: var(--step-0);
+    line-height: 1.7;
+    color: var(--color-navy);
+    max-width: 65ch; /* Optimal reading line length */
+    margin: 0 auto 1.5em auto; /* Center text block */
+    text-align: center; /* Or left-align if preferred */
+  }
+
+  @media (min-width: 768px) {
+     .about-content p {
+       text-align: left;
+     }
+  }
+
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap; /* Allow badges to wrap on smaller screens */
+    justify-content: center;
+    gap: 0.8rem 1.2rem; /* Row and column gap */
+    margin-top: 2rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-sand);
+    color: var(--color-navy);
+    padding: 0.4em 0.9em;
+    border-radius: 20px;
+    font-size: var(--step--1);
+    font-weight: 500;
+    border: 1px solid var(--color-blush); /* Subtle border */
+  }
+
+  .badge-icon {
+    margin-right: 0.5em;
+    /* Optional: slightly larger icon */
+    /* font-size: 1.1em; */
+  }
+
+  .social-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-teal);
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .social-icon:hover,
+  .social-icon:focus {
+    color: var(--color-blush);
+    transform: scale(1.1);
+  }
+</style> 

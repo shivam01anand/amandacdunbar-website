@@ -1,0 +1,219 @@
+---
+// src/components/Hero.astro
+import { Image } from 'astro:assets';
+
+const portraitImage = '/amanda-dunbar-portrait.jpg'; // Updated path - ensure image is in /public
+const altText = "Portrait of Amanda Dunbar, RMT Student Therapist";
+const bookingLink = "https://enhancedhealing.janeapp.com/locations/enhanced-healing-massage-therapy-102-1820-ambrosi-road/book#/staff_member/62/treatment/271"; // Updated booking link
+---
+
+<section id="hero" class="hero-section">
+  <div class="hero-content">
+    <h1>Relax deeper. Heal smarter.</h1>
+    <p class="subtitle">Massage therapy with Amanda Dunbar, RMT&nbsp;(student). Based in Kelowna, BC.</p>
+    <div class="cta-buttons">
+      <a href={bookingLink} target="_blank" rel="noopener noreferrer" class="button primary" aria-label="Book at Enhanced Healing Massage Therapy (opens in new tab)">
+        Book at Enhanced Healing
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="external-link-icon" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+      <a href="#treatment-focus" class="button secondary">Learn about my approach</a>
+    </div>
+  </div>
+  <div class="hero-image-container">
+    <!-- Use Astro Assets for optimization, add fetchpriority -->
+    <!-- Note: SVG placeholder won't be optimized by Image component, but a real raster image (JPG, WebP) would be -->
+    <img 
+      src={portraitImage} 
+      alt={altText} 
+      width="800" 
+      height="600" 
+      loading="eager" 
+      fetchpriority="high"
+      class="hero-image"
+    />
+     <!-- If using Astro <Image>: -->
+     <!-- <Image 
+      src={import("../../public/placeholder-amanda-portrait.svg")} 
+      alt={altText} 
+      width={800}
+      height={600}
+      loading="eager" 
+      fetchpriority="high"
+      class="hero-image"
+     /> -->
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile first: single column */
+    align-items: center;
+    gap: 2rem;
+    min-height: 80vh; /* Give it some height */
+    padding: var(--step-3) var(--step-1); /* Vertical and horizontal padding */
+    background-color: var(--color-sand); /* Use sand as base */
+    overflow: hidden; /* Prevent layout issues */
+  }
+
+  @media (min-width: 768px) { /* Tablet and up */
+    .hero-section {
+      grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+      min-height: calc(100vh - 80px); /* Example: full viewport height minus potential header */
+      padding: var(--step-4) var(--step-2);
+    }
+  }
+
+  .hero-content {
+    text-align: center;
+    /* Fade-in animation (subtle) */
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  @media (min-width: 768px) {
+    .hero-content {
+      text-align: left;
+      padding-right: 1rem; /* Space between text and image */
+    }
+  }
+
+  h1 {
+    font-size: var(--step-5);
+    color: var(--color-teal);
+    margin-bottom: 0.25em;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: var(--step-1);
+    color: var(--color-navy);
+    margin-bottom: 1.5em;
+    max-width: 50ch; /* Improve readability */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    .subtitle {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons on mobile */
+    gap: 1rem;
+    align-items: center;
+  }
+
+  @media (min-width: 500px) { /* Adjust breakpoint as needed */
+     .cta-buttons {
+        flex-direction: row; /* Side-by-side on larger screens */
+        justify-content: center;
+     }
+  }
+  
+  @media (min-width: 768px) {
+     .cta-buttons {
+        justify-content: flex-start; /* Align left on desktop */
+     }
+  }
+
+
+  .button {
+    display: inline-flex; /* Aligns icon nicely */
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.8em 1.5em;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: var(--step-0);
+    white-space: nowrap; /* Prevent wrapping */
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .button.primary {
+    background-color: var(--color-teal);
+    color: white;
+  }
+
+  .button.primary:hover {
+    background-color: #005658; /* Darker teal */
+    color: white;
+    text-decoration: none;
+  }
+
+  .button.secondary {
+    background-color: transparent;
+    color: var(--color-teal);
+    border-color: var(--color-teal);
+  }
+
+  .button.secondary:hover {
+    background-color: var(--color-teal);
+    color: white;
+    text-decoration: none;
+  }
+
+  .external-link-icon {
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: 0.2em;
+    stroke-width: 2.5;
+  }
+
+  .hero-image-container {
+    /* On mobile, image might be full width or handled differently */
+    /* Fade-in animation */
+    animation: fadeIn 1s 0.2s ease-out forwards; /* Slight delay */
+    opacity: 0;
+  }
+
+  .hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 70vh; /* Limit height */
+    object-fit: cover;
+    border-radius: 8px; /* Soft rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+
+  @media (min-width: 768px) {
+    .hero-image-container {
+      /* Take up the second grid column */
+      grid-column: 2 / 3;
+      grid-row: 1 / 2; /* Align with text */
+    }
+    .hero-image {
+       max-height: 80vh; /* Allow more height on desktop */
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Reduced motion adjustments */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-content, .hero-image-container {
+      animation: none;
+      opacity: 1;
+    }
+    .button:hover {
+        transform: none;
+        box-shadow: none;
+    }
+  }
+</style> 

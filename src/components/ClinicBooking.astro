@@ -1,0 +1,325 @@
+---
+// src/components/ClinicBooking.astro
+// Placeholder for Clinic & Booking section
+
+const mapImageUrl = "/placeholder-map.png"; // Replace with static map image (WebP preferred)
+const mapAltText = "Map showing Enhanced Healing Massage Therapy location on Ambrosi Rd, Kelowna";
+const clinicName = "Enhanced Healing Massage Therapy";
+const clinicAddressLine1 = "102-1820 Ambrosi Rd";
+const clinicAddressLine2 = "Kelowna, BC V1Y 4R9";
+const bookingLink = "https://enhancedhealing.janeapp.com/locations/enhanced-healing-massage-therapy-102-1820-ambrosi-road/book#/staff_member/62/treatment/271";
+
+// Location proximity details
+const proximityDetails = [
+  { place: "Orchard Park Shopping Centre", minutes: 3 },
+  { place: "Landmark District Business Hub", minutes: 5 },
+  { place: "Kelowna General Hospital", minutes: 8 },
+  { place: "Downtown Kelowna", minutes: 10 },
+  { place: "UBC Okanagan Campus", minutes: 15 }
+];
+
+// Placeholder Hours - **MUST** Replace with actual clinic hours
+const hours = [
+  { day: "Monday", time: "9:00 AM - 5:00 PM" },
+  { day: "Tuesday", time: "9:00 AM - 5:00 PM" },
+  { day: "Wednesday", time: "9:00 AM - 5:00 PM" },
+  { day: "Thursday", time: "9:00 AM - 5:00 PM" },
+  { day: "Friday", time: "9:00 AM - 3:00 PM" },
+  { day: "Saturday", time: "Closed" },
+  { day: "Sunday", time: "Closed" }
+];
+---
+
+<section id="clinic-booking" class="clinic-booking-section">
+  <div class="container">
+    <h2>Clinic Location</h2>
+    <div class="content-grid">
+      <div class="map-container">
+        <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(clinicAddressLine1 + ", " + clinicAddressLine2)}`} target="_blank" rel="noopener noreferrer" aria-label="View map on Google Maps (opens in new tab)">
+          <img 
+            src={mapImageUrl} 
+            alt={mapAltText} 
+            width="600" 
+            height="450" 
+            loading="lazy" 
+            class="map-image"
+          />
+          <!-- Consider <Image unoptimized> if using Next.js & external GIF maps as per brief -->
+        </a>
+      </div>
+      <div class="info-container">
+        <h3>{clinicName}</h3>
+        <p class="address">
+          {clinicAddressLine1}<br>
+          {clinicAddressLine2}
+        </p>
+        
+        <div class="proximity-container">
+          <h4>Conveniently Located Near:</h4>
+          <ul class="proximity-list">
+            {proximityDetails.map(({ place, minutes }) => (
+              <li>
+                <span class="place-name">{place}</span>
+                <span class="drive-time">{minutes} mins</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <p class="availability-note">
+          Please check the booking link for my current availability and specific appointment times.
+        </p>
+        <a href={bookingLink} target="_blank" rel="noopener noreferrer" class="button primary booking-button" aria-label="Book at Enhanced Healing Massage Therapy (opens in new tab)">
+          Check Availability & Book
+           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="external-link-icon" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Placeholder for sticky mobile bar (requires JS) -->
+  <!-- 
+  <div class="sticky-book-bar" id="sticky-book-bar">
+      <a href={bookingLink} target="_blank" rel="noopener noreferrer" class="button primary">
+          Book Now 
+          <svg ... />
+      </a>
+  </div> 
+  -->
+</section>
+
+<style>
+  .clinic-booking-section {
+    padding: var(--step-4) var(--step-1);
+    background-color: white; /* Contrast section */
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 var(--step-0);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5em;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile first */
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 768px) { /* Desktop layout */
+    .content-grid {
+      grid-template-columns: 1fr 1fr; /* Equal columns */
+      gap: 3rem;
+    }
+  }
+
+  .map-container a {
+     display: block; /* Remove underline */
+     line-height: 0; /* Prevent extra space below image */
+  }
+
+  .map-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    object-fit: cover; /* Ensure image covers area */
+     transition: box-shadow 0.2s ease;
+  }
+  .map-container a:hover .map-image,
+  .map-container a:focus .map-image {
+      box-shadow: 0 0 0 3px var(--color-violet-accent);
+  }
+
+
+  .info-container {
+    /* Styles for text content */
+  }
+
+  h3 {
+    font-size: var(--step-2);
+    margin-bottom: 0.5em;
+    color: var(--color-teal);
+  }
+
+  .address {
+    font-size: var(--step-0);
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+  }
+
+  h4 {
+    font-size: var(--step-1);
+    font-weight: 500; /* Less prominent than h3 */
+    margin-bottom: 0.75em;
+    color: var(--color-navy);
+  }
+  
+  .proximity-container {
+    background-color: var(--color-sand);
+    border-radius: 8px;
+    padding: 1.25em;
+    margin-bottom: 1.5em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  }
+  
+  .proximity-container h4 {
+    margin-bottom: 0.75em;
+    font-size: var(--step-0);
+    color: var(--color-teal);
+  }
+  
+  .proximity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+  }
+  
+  @media (min-width: 500px) {
+    .proximity-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .proximity-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4em 0;
+    font-size: var(--step--1);
+    color: var(--color-navy);
+    border-bottom: 1px dashed rgba(0, 109, 111, 0.1);
+  }
+  
+  .proximity-list .place-name {
+    font-weight: 500;
+  }
+  
+  .proximity-list .drive-time {
+    white-space: nowrap;
+    color: var(--color-teal);
+    background-color: rgba(0, 109, 111, 0.08);
+    padding: 0.2em 0.6em;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 0.9em;
+  }
+
+  .availability-note {
+      font-size: var(--step--1);
+      margin-bottom: 2em;
+      padding: 1em;
+      background-color: var(--color-sand);
+      border-left: 3px solid var(--color-teal);
+      border-radius: 0 4px 4px 0;
+  }
+
+  .booking-button {
+      display: inline-block;
+      background-color: var(--color-teal);
+      color: white;
+      padding: 0.75em 1.5em;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      margin-top: 1em;
+  }
+
+  .booking-button:hover {
+      background-color: var(--color-teal-dark);
+  }
+
+  /* Styles for the sticky bar (Hidden initially) */
+  .sticky-book-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(14, 23, 36, 0.95); /* Semi-transparent Navy */
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    display: none; /* Hide by default, JS will show */
+  }
+
+  .sticky-book-bar.visible {
+    transform: translateY(0);
+  }
+
+  .sticky-book-bar .button {
+    /* Adjust button style if needed for sticky bar */
+    width: 80%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) { /* Hide sticky bar on desktop */
+      .sticky-book-bar {
+          display: none !important; /* Ensure it never shows */
+      }
+  }
+
+  /* Utility class to hide element visually but keep for screen readers */
+  .visually-hidden {
+    /* styles defined in global.css */
+  }
+
+  /* Ensure external link icon is styled (already in Hero) */
+  .external-link-icon {
+      width: 0.9em;
+      height: 0.9em;
+      margin-left: 0.2em;
+      stroke-width: 2.5;
+  }
+</style>
+
+<!-- 
+<script>
+// Basic JS for sticky bar visibility (requires more robust implementation)
+
+document.addEventListener('DOMContentLoaded', () => {
+  const stickyBar = document.getElementById('sticky-book-bar');
+  if (!stickyBar) return;
+
+  // Don't run on desktop (matches CSS breakpoint)
+  if (window.matchMedia("(min-width: 768px)").matches) {
+      return;
+  }
+
+  // Show after scrolling 50% of viewport height
+  const showThreshold = window.innerHeight * 0.5;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > showThreshold) {
+      stickyBar.style.display = 'flex'; // Make it visible for animation
+      requestAnimationFrame(() => {
+          stickyBar.classList.add('visible');
+      });
+    } else {
+      stickyBar.classList.remove('visible');
+      // Optional: Hide again fully after transition
+      // stickyBar.addEventListener('transitionend', () => {
+      //    if (!stickyBar.classList.contains('visible')) {
+      //        stickyBar.style.display = 'none';
+      //    }
+      // }, { once: true });
+    }
+  });
+});
+</script>
+--> 

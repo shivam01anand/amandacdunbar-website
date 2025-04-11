@@ -1,0 +1,119 @@
+---
+// src/components/Footer.astro
+// Placeholder for Footer content
+
+const instagramUrl = "https://www.instagram.com/amandacdunbar/"; // Updated Instagram URL
+const contactEmail = "amanda@amandacdunbar.com";
+// Placeholder for Mailchimp embed code or link
+const mailchimpPlaceholder = "<!-- Tiny Mailchimp embed/link here -->";
+---
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="social-links">
+      <a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Amanda Dunbar on Instagram (opens in new tab)">
+        <!-- Simple Instagram SVG Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        <span class="visually-hidden">Instagram</span>
+      </a>
+      <!-- Add other social links here if needed -->
+    </div>
+    <div class="contact-info">
+      <p>Contact: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
+    </div>
+    <div class="legal-info">
+      <small>
+        © {new Date().getFullYear()} Amanda Dunbar RMT (Student)
+        <span class="separator">·</span>
+        <a href="/privacy">Privacy</a>
+        <span class="separator">·</span>
+        <a href="/accessibility">Accessibility</a>
+      </small>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-navy);
+    color: var(--color-sand);
+    padding: var(--step-2) var(--step-1);
+    margin-top: var(--step-5); /* Ensure adequate space above footer */
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .social-links {
+    margin-bottom: 1.5rem;
+  }
+
+  .social-links a {
+    color: var(--color-sand);
+    display: inline-block;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .social-links a:hover,
+  .social-links a:focus {
+    color: var(--color-blush); /* Highlight color on hover */
+    transform: scale(1.1);
+    outline-offset: 4px;
+  }
+
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .contact-info {
+    margin-bottom: 1.5rem;
+    font-size: var(--step--1);
+  }
+
+  .contact-info a {
+    color: var(--color-sand);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+  }
+
+  .contact-info a:hover,
+  .contact-info a:focus {
+    color: var(--color-blush);
+  }
+
+  .legal-info {
+    font-size: var(--step--2);
+    opacity: 0.7;
+  }
+
+  .legal-info a {
+    color: var(--color-sand);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .legal-info a:hover,
+  .legal-info a:focus {
+    color: var(--color-blush);
+    text-decoration: none;
+  }
+
+  .separator {
+      margin: 0 0.5em;
+  }
+
+  /* Visually hidden class defined globally */
+  .visually-hidden {
+      /* Defined in global.css */
+  }
+</style> 

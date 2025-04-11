@@ -1,0 +1,71 @@
+---
+import '@fontsource/playfair-display/600.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '../styles/global.css'; // Will create this next
+
+const { title = "Amanda Dunbar RMT Student Therapist – Massage Therapy Kelowna", description = "Relax deeper. Heal smarter. Massage therapy with Amanda Dunbar, RMT student in Kelowna, BC. Specializing in trigger point release, TMJ relief, and concussion management." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description.slice(0, 155)} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts - Playfair Display and Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Amanda Dunbar, RMT Student @ Enhanced Healing Massage Therapy",
+        "description": "Massage therapy focused on relaxation, trigger point release, TMJ relief, and concussion management.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "102-1820 Ambrosi Rd",
+          "addressLocality": "Kelowna",
+          "addressRegion": "BC",
+          "postalCode": "V1Y 4R9",
+          "addressCountry": "CA"
+        },
+        "url": "https://enhancedhealing.janeapp.com/locations/enhanced-healing-massage-therapy-102-1820-ambrosi-road/book#/staff_member/62/treatment/271",
+        "image": "/amanda-dunbar-portrait.jpg",
+        "telephone": "+1-236-420-1440"
+      }
+    </script>
+
+    <!-- Basic SEO and Social Sharing -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description.slice(0, 155)} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/placeholder-social-share.webp" /> // Placeholder
+    <meta property="og:url" content={Astro.url} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Analytics Placeholder - Wrap in ENV var check if needed -->
+    <!--
+    <% if (import.meta.env.PROD && import.meta.env.PUBLIC_GA_TRACKING_ID) { %>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_TRACKING_ID}`}></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${import.meta.env.PUBLIC_GA_TRACKING_ID}');
+      </script>
+    <% } %>
+    -->
+  </head>
+  <body>
+    <slot /> <!-- Page content will be injected here -->
+  </body>
+</html> 
